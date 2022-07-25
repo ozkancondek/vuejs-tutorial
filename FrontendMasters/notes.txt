@@ -1,0 +1,11 @@
+Setup npm i -g @vue/cli  ====== vue create my-project  === cd folder and npm serve
+-Vue devtools
+-Vue devtools 3 beta
+-Vetur
+-Vue VS Code Snippets
+
+continue with codepen
+
+directives in Vue
+
+V-model
