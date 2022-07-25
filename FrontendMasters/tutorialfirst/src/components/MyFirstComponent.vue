@@ -1,9 +1,14 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <div class="first-component">
     <h1>{{ header }}</h1>
     <p>{{ paragraph }}</p>
     <p>And here is my favorite number: {{ myNum }}</p>
     <p>Follow me from <a href="https://github.com/ozkancondek/">here</a></p>
+    <h1>Type here:</h1>
+    <textarea v-model="message" class="message" rows="5" maxlength="72" />
+    <br />
+    <p>{{ message }}</p>
   </div>
 </template>
 
@@ -14,6 +19,7 @@ export default {
     header: String,
     paragraph: String,
     myNUm: Number,
+    message: String,
   },
 };
 </script>
@@ -27,5 +33,8 @@ div {
 
 a {
   color: #42b983;
+}
+textarea {
+  padding: 10px;
 }
 </style>
