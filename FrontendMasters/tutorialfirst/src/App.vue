@@ -7,18 +7,25 @@
       paragraph="Here is small explanation about me"
       myNum="7"
     />
+    <DirectivesModifiersDataRendering
+      showButton=""
+      like=""
+      writeMessage="Message appears in below"
+    />
   </div>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 import MyFirstComponent from "./components/MyFirstComponent.vue";
+import DirectivesModifiersDataRendering from "./components/DirectivesModifiersDataRendering.vue";
 
 export default {
   name: "App",
   components: {
     HelloWorld,
     MyFirstComponent,
+    DirectivesModifiersDataRendering,
   },
 };
 </script>

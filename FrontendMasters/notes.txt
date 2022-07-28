@@ -1,4 +1,4 @@
-Setup npm i -g @vue/cli  ====== vue create my-project  === cd folder and npm serve
+Setup npm i -g @vue/cli  ====== vue create my-project  === cd folder and npm run serve
 -Vue devtools
 -Vue devtools 3 beta
 -Vetur
