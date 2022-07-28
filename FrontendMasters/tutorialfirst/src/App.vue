@@ -8,6 +8,8 @@
       myNum="7"
     />
     <DirectivesModifiersDataRendering
+      changeColor=""
+      colored="changeBG"
       showButton=""
       like=""
       writeMessage="Message appears in below"

@@ -44,6 +44,24 @@
       <p v-if="like === `yes`">thank u😊!!!!</p>
       <p v-else-if="like === `no`">Whyy😔!!!!</p>
     </div>
+    <div class="v-bind">
+      <h1>V-BIND</h1>
+      <p>
+        One of the most useful directives so there's a shortcut! We can use it
+        for so many things- class and style binding, creating dynamic props,
+        etc...
+      </p>
+      <br />
+      <h3>Change Color if textarea active</h3>
+      <textarea v-model="changeColor"></textarea>
+      <br />
+      <p>
+        if v-model true, pick a colored class which is defined in app.vue.
+        Otherwise its empty
+      </p>
+      <br />
+      <button :class="[changeColor ? colored : '']">COLOR</button>
+    </div>
   </div>
 </template>
 
@@ -55,6 +73,8 @@ export default {
     checkedNames: String,
     showButton: String,
     like: String,
+    changeColor: String,
+    colored: String,
   },
 };
 </script>
@@ -71,14 +91,17 @@ button {
   padding: 0.5em 1em;
   border-radius: 3px;
 }
+.changeBG {
+  background: aqua;
+}
+
 .DirectivesModifiersDataRendering {
   border: 5px solid aqua;
   padding: 10px;
 }
 .v-model,
-.v-if-v-show {
-  border: 4px solid pink;
-}
+.v-if-v-show,
+.v-bind,
 .v-if-v-else {
   border: 4px solid pink;
 }
