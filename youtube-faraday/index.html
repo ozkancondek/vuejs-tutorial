@@ -5,9 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vu 3 Basics</title>
+    <style>
+      .showBox1 {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+      }
+      .showBox2 {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(169, 45, 201);
+      }
+      .showBox3 {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(94, 201, 45);
+      }
+      .container {
+        width: 300px;
+        height: 300px;
+        border: 3px solid red;
+        padding: 10px;
+      }
+      [v-cloak] {
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <div id="app">{{greeting}}</div>
+    <div id="app" v-cloak>
+      <h3>Two way data binding</h3>
+      <input v-model="greeting" />
+      <br />
+
+      {{greeting}}
+      <hr />
+      <div v-if="isVisible" class="box">
+        => v-if:is visible depends on the state
+      </div>
+      <div v-show="isVisible" class="box">
+        =>v-show:same with v-if but display is none
+      </div>
+      <hr />
+      <div class="container">
+        <p>when i refresh the page al the boxex appearing in a short time</p>
+        <p>to prevent it use v-cloak</p>
+        <div v-if="showBox1" class="showBox1">showBox1</div>
+        <div v-else-if="showBox2" class="showBox2">showBox2</div>
+        <div v-else class="showBox3">showBox3</div>
+      </div>
+    </div>
 
     <script src="https://unpkg.com/vue@next"></script>
     <script>
@@ -15,6 +62,9 @@
         data: function () {
           return {
             greeting: "Hello world",
+            isVisible: true,
+            showBox1: false,
+            showBox2: true,
           };
         },
       });
