@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vu 3 Basics</title>
+    <style>
+      #app {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        border: 2px solid red;
+      }
+      h1 {
+        font-size: 2rem;
+        color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <h1>{{header}}</h1>
+      <ul>
+        <li v-for="(str,i) in inputs" :key="i">{{str}}</li>
+      </ul>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      let app = Vue.createApp({
+        data: function () {
+          return {
+            header: "Loops",
+            inputs: ["email", "password", "name"],
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
