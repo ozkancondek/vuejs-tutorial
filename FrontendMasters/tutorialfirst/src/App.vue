@@ -5,7 +5,7 @@
     <MyFirstComponent
       header="Ozkan Condek"
       paragraph="Here is small explanation about me"
-      myNum="7"
+      myNum=7
     />
     <DirectivesModifiersDataRendering
       changeColor=""
@@ -13,6 +13,16 @@
       showButton=""
       like=""
       writeMessage="Message appears in below"
+      counter=0
+       myColor = "I like <a href='http://www.epicurious.com/recipes/food/views/tacos-al-pastor-242132'target='_blank'>Al Pastor</a> color"
+      write = "Change here"
+   
+    />
+    <DirectivesExample
+    header = "Directives Example"
+    num1 =0
+    num2=0
+    name = ""
     />
   </div>
 </template>
@@ -21,14 +31,18 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import MyFirstComponent from "./components/MyFirstComponent.vue";
 import DirectivesModifiersDataRendering from "./components/DirectivesModifiersDataRendering.vue";
+import     DirectivesExample from "./components/DirectivesExample.vue";
 
+ 
 export default {
   name: "App",
   components: {
     HelloWorld,
     MyFirstComponent,
     DirectivesModifiersDataRendering,
-  },
+    DirectivesExample
+  }
+
 };
 </script>
 
