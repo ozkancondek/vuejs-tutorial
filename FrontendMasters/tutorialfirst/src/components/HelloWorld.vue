@@ -8,8 +8,16 @@
 export default {
   name: "HelloWorld",
   props: {
-    msg: String,
+    msg: {
+      type: String,
+      default: () => 'Hello WOOOOORLD'
+    }
   },
+  data(){
+    return{
+      message:"Velcome to your Vue.js App"
+    }
+  }
 };
 </script>
 

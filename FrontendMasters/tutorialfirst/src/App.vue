@@ -1,9 +1,9 @@
 <template>
   <div>
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <HelloWorld :msg="message" />
     <MyFirstComponent
-      header="Ozkan Condek"
+      header="My component header"
       paragraph="Here is small explanation about me"
       myNum=7
     />
@@ -32,6 +32,7 @@ import HelloWorld from "./components/HelloWorld.vue";
 import MyFirstComponent from "./components/MyFirstComponent.vue";
 import DirectivesModifiersDataRendering from "./components/DirectivesModifiersDataRendering.vue";
 import     DirectivesExample from "./components/DirectivesExample.vue";
+import { computed } from '@vue/runtime-core';
 
  
 export default {
@@ -41,8 +42,29 @@ export default {
     MyFirstComponent,
     DirectivesModifiersDataRendering,
     DirectivesExample
-  }
+  },
+  setup() {
+    const message = "Velcome to your Vue.js App";
+    const cCounter = computed(() => {
+      return new Date()
+    })
+    const myClickHandler = () => {
+      console.log('asd');
+    }
 
+    return { message, cCounter, myClickHandler }
+  },
+  // data(){
+  //   return{
+  //     message:"Velcome to your Vue.js App"
+  //   }
+  // },
+  computed: {
+    cCounterTwo: () => ({
+      message:"Velcome to your Vue.js App"
+    })
+  },
+  
 };
 </script>
 

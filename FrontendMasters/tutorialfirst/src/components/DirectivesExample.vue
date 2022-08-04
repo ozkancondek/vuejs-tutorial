@@ -1,25 +1,7 @@
 <template>
   <div class="example">
     <h1>{{header}}</h1>
-    <div class="calculator">
-<div class="row">
-    <input v-model.number="num1" type="number" />
-    <span>+</span>
    
-    <input v-model.number="num2" type="number" />
-    <span>=</span>
-    <span>{{ num1 + num2 }}</span>
-  </div>
-  <div class="row second">
-    <select v-model="name">
-      <option>Carne Asada</option>
-      <option>Pollo</option>
-      <option>Bean</option>
-      <option>Al Pastor</option>
-    </select>
-    <p v-if="name">My favorite kind of taco is {{ name }}</p>
-  </div>
-    </div>
   </div>
 </template>
 
@@ -28,9 +10,7 @@ export default {
   name: "DirectivesExample",
   props: {
     header: String,
-    num1:Number,
-    num2:Number,
-    name:String
+  
   },
 };
 </script>

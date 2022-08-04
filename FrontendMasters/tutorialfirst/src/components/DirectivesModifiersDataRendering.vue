@@ -72,9 +72,9 @@
       </ul>
 
       <p>Print the object elements</p>
-      <!--  <p v-for="(value, key, index) in jokes" :key="value"> 
+       <p v-for="(value, key, index) in jokes" :key="value"> 
     {{ index }}. {{ key }}: {{ value }}
-  </p>-->
+  </p> 
 
       <!--   jokes: {
         question: 'What did one baby prototype say to the other?',
@@ -143,6 +143,15 @@ export default {
     myColor:String,
     write :String
   },
+   data() {
+    return {
+      jokes: {
+        question: 'What did one baby prototype say to the other?',
+        answer: `I'll race you to class!`,
+        response: 'groan'
+      }
+    }
+  }
 };
 </script>
 
