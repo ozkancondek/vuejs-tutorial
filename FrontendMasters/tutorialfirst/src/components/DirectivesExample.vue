@@ -1,8 +1,28 @@
 <template>
   <div class="example">
     <h1>{{header}}</h1>
+    <div class="row">
+      <input v-model.number ="num1" type="number">
+      <span>+</span>
+      <input v-model.number ="num2" type="number">
+      <span>=</span>
+      <span>{{num1 + num2}}</span>
+
+    </div>
+    <div class="row second">
+      <select v-model="name">
+        <option>Carne Asada</option>
+      <option>Pollo</option>
+      <option>Bean</option>
+      <option>Al Pastor</option>
+      </select>
+       
+      <p :class="[name ? 'dontShow' : '']">This line will not be appeared when u choose a name</p>
+      <br>
+      <p v-if="name">You choosed:{{name}} and your sum is {{num1+num2}}</p>
+    </div>
    
-  </div>
+  </div> 
 </template>
 
 <script>
@@ -12,12 +32,20 @@ export default {
     header: String,
   
   },
+  data(){
+    return{
+      num1:0,
+      num2:0,
+       
+      name:""
+    }
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-div {
+.example{
   border: 2px solid blue;
   margin-top: 10px;
 }
@@ -58,6 +86,9 @@ input {
 
 span {
   width: 20px;
+}
+.dontShow{
+  display: none;
 }
 
  

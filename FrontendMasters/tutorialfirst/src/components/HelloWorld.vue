@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ message }}</h1>
   </div>
 </template>
 
@@ -8,16 +8,16 @@
 export default {
   name: "HelloWorld",
   props: {
-    msg: {
+    message: {
       type: String,
-      default: () => 'Hello WOOOOORLD'
+       default: () => "Velcome to your Vue.js App"
     }
   },
-  data(){
-    return{
-      message:"Velcome to your Vue.js App"
-    }
-  }
+  // data(){ 
+  //   return{
+  //     message:"Velcome to your Vue.js App"
+  //   }
+  // }
 };
 </script>
 

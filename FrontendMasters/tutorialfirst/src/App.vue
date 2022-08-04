@@ -1,10 +1,11 @@
 <template>
   <div>
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld :msg="message" />
+    <HelloWorld   /> 
+    <!-- <HelloWorld :msg="message" /> -->
     <MyFirstComponent
       header="My component header"
-      paragraph="Here is small explanation about me"
+      paragraph="Here is small explanation about me" 
       myNum=7
     />
     <DirectivesModifiersDataRendering
@@ -48,7 +49,7 @@ export default {
     const cCounter = computed(() => {
       return new Date()
     })
-    const myClickHandler = () => {
+    const myClickHandler = () => { 
       console.log('asd');
     }
 
