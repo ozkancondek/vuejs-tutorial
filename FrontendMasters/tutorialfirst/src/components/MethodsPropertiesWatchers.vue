@@ -87,6 +87,20 @@
           <tbody></tbody>
         </table>
       </div>
+      <div class="compProps">
+        <h2>Computed Properties</h2>
+        <p>
+          Computed properties are calculations that will be cached and will only
+          update when needed. Highly performant but use with understanding. Ex
+          usage input field filter
+        </p>
+        <h3>Your Name: <input v-model.lazy="userData" /></h3>
+        <h2 v-if="userData">Initial entry: {{ userData }}</h2>
+        <h2 v-if="userData">Computed Value: {{ greeting }}</h2>
+        <p>counter2: {{ counter2 }}</p>
+        <p>counter2 computed: {{ countupComp }}</p>
+        <button @click="countup">Increase</button>
+      </div>
     </div>
   </div>
 </template>
@@ -102,7 +116,9 @@ export default {
   },
   data() {
     return {
+      userData: "",
       counter: 0,
+      counter2: 0,
       x: 0,
       newComment: "",
       comments: [
@@ -140,6 +156,9 @@ export default {
     };
   },
   methods: {
+    countup() {
+      this.counter2++;
+    },
     increment() {
       this.counter++;
     },
@@ -174,6 +193,14 @@ export default {
       this.ratingsInfo.sort((a, b) => (a.rating > b.rating ? -1 : 1));
     },
   },
+  computed: {
+    greeting() {
+      return `You writed  ${this.userData}!`;
+    },
+    countupComp() {
+      return this.counter2 + 1;
+    },
+  },
 };
 </script>
 
@@ -182,7 +209,8 @@ export default {
 .container,
 .addComment,
 .methodForm,
-.sortwithvfor {
+.sortwithvfor,
+.compProps {
   border: 2px solid rgb(46, 115, 0);
   margin-top: 10px;
 }

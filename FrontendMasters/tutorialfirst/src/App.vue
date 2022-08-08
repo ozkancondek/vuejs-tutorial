@@ -21,6 +21,7 @@
     <DirectivesExample header="Directives Example" num1="0" num2="0" name="" />
     <VueModifiers />
     <MethodsPropertiesWatchers />
+    <ComputedExample />
   </div>
 </template>
 
@@ -31,6 +32,7 @@ import DirectivesModifiersDataRendering from "./components/DirectivesModifiersDa
 import DirectivesExample from "./components/DirectivesExample.vue";
 import VueModifiers from "./components/Modifiers.vue";
 import MethodsPropertiesWatchers from "./components/MethodsPropertiesWatchers.vue";
+import ComputedExample from "./components/ComputedExample.vue";
 
 import { computed } from "@vue/runtime-core";
 
@@ -43,6 +45,7 @@ export default {
     DirectivesExample,
     VueModifiers,
     MethodsPropertiesWatchers,
+    ComputedExample,
   },
   setup() {
     const message = "Velcome to your Vue.js App";
