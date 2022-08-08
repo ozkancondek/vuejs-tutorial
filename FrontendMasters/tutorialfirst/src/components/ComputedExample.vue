@@ -121,9 +121,10 @@ export default {
         label: this.newLabel,
       };
       this.posts.push(addedPost);
-      this.newTitle = "";
-      this.newAuthor = "";
-      this.newLabel = "";
+      // this.newTitle = "";
+      // this.newAuthor = "";
+      // this.newLabel = "";
+      this.$refs.myForm.reset();
     },
   },
   computed: {
