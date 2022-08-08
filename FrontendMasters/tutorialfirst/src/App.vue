@@ -3,11 +3,13 @@
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld />
     <!-- <HelloWorld :msg="message" /> -->
-    <MyFirstComponent
-      header="My component header"
-      paragraph="Here is small explanation about me"
-      myNum="7"
-    />
+    <h3>
+      <button @click="increment">+</button>
+      Adjust the counter
+      <button @click="decrement">-</button>
+      <p>Here is app data {{ count }}</p>
+    </h3>
+    <MyFirstComponent :count="count" />
     <DirectivesModifiersDataRendering
       changeColor=""
       colored="changeBG"
@@ -36,7 +38,7 @@ import MethodsPropertiesWatchers from "./components/MethodsPropertiesWatchers.vu
 import ComputedExample from "./components/ComputedExample.vue";
 import WatchersVue from "./components/WatchersVue.vue";
 
-import { computed } from "@vue/runtime-core";
+//import { computed } from "@vue/runtime-core";
 
 export default {
   name: "App",
@@ -50,22 +52,31 @@ export default {
     ComputedExample,
     WatchersVue,
   },
-  setup() {
-    const message = "Velcome to your Vue.js App";
-    const cCounter = computed(() => {
-      return new Date();
-    });
-    const myClickHandler = () => {
-      console.log("asd");
-    };
+  // setup() {
+  //   const message = "Velcome to your Vue.js App";
+  //   const cCounter = computed(() => {
+  //     return new Date();
+  //   });
+  //    const myClickHandler = () => {
+  //     console.log("asd");
+  //   };
 
-    return { message, cCounter, myClickHandler };
-  },
-  // data(){
-  //   return{
-  //     message:"Velcome to your Vue.js App"
-  //   }
+  //   return { message, cCounter, myClickHandler };
   // },
+  data() {
+    return {
+      message: "Velcome to your Vue.js App",
+      count: 0,
+    };
+  },
+  methods: {
+    increment() {
+      this.count++;
+    },
+    decrement() {
+      this.count--;
+    },
+  },
   computed: {
     cCounterTwo: () => ({
       message: "Velcome to your Vue.js App",
