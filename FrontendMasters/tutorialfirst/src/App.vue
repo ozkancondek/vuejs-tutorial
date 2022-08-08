@@ -25,6 +25,7 @@
     <MethodsPropertiesWatchers />
     <ComputedExample />
     <WatchersVue />
+    <ProductsVue />
   </div>
 </template>
 
@@ -37,6 +38,7 @@ import VueModifiers from "./components/Modifiers.vue";
 import MethodsPropertiesWatchers from "./components/MethodsPropertiesWatchers.vue";
 import ComputedExample from "./components/ComputedExample.vue";
 import WatchersVue from "./components/WatchersVue.vue";
+import ProductsVue from "./components/ProductsVue.vue";
 
 //import { computed } from "@vue/runtime-core";
 
@@ -51,6 +53,7 @@ export default {
     MethodsPropertiesWatchers,
     ComputedExample,
     WatchersVue,
+    ProductsVue,
   },
   // setup() {
   //   const message = "Velcome to your Vue.js App";
