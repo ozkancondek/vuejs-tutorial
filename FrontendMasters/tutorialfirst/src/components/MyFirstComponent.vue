@@ -21,11 +21,37 @@
       <p>Here is Counter:{{ count }}</p>
       <p>it comes from parent component</p>
     </div>
+    <div class="section">
+      <h3>Emit</h3>
+      <p>reporting from child to parent</p>
+      <p>Define an emit in child component first</p>
+      <p>@click="$emit('getText')"></p>
+      <p>Give it to child as props in parent component</p>
+      <p>@getText="updateText"</p>
+    </div>
+    <div class="section">
+      <h3>Slots</h3>
+      <p>Pass some content into a component with ease!</p>
+      <p>Pass template content to a child compoennt</p>
+    </div>
+    <!-- <HelperSlot :component-Text="helperSlotText" /> -->
+    <HelperSlot :component-Text="helperSlotText">
+      <!--  <p slot="upper">I named this p tags to determine their places******</p> -->
+      <p>I named this p tags to determine their places******</p>
+      <p>
+        I wrote this contetn in parent component between child component
+        tags******
+      </p>
+    </HelperSlot>
   </div>
 </template>
 
 <script>
+import HelperSlot from "./ui/HelperSlot.vue";
 export default {
+  components: {
+    HelperSlot,
+  },
   name: "MyFirstComponent",
   props: {
     header: {
@@ -38,16 +64,21 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      helperSlotText: "I am the HelperSlot header",
+    };
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-div,
+.first-component {
+  border: 2px solid red;
+  padding: 10px;
+}
 .section {
-  border: 3px solid rgb(243, 78, 169);
+  border: 3px solid rgb(141, 243, 78);
   margin-top: 10px;
   padding: 10px;
 }

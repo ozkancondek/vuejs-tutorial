@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button>{{ btnText }}</button>
+    <!--  <button>{{ btnText }}</button> -->
+
+    <button @click="$emit('getText')">{{ fullText }}</button>
   </div>
 </template>
 <script>
@@ -9,7 +11,13 @@ export default {
     btnText: {
       type: String,
       required: true,
-      default: "Click Me",
+      default: () => "Click Me",
+      /* default: "Click Me", */
+    },
+  },
+  computed: {
+    fullText() {
+      return this.btnText + "ozkan";
     },
   },
 };

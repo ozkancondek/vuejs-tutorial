@@ -4,7 +4,8 @@
     <h1>{{ header }}</h1>
     <!--  <MyButton btn-text="Hi from parent" /> -->
     <!-- <MyButton :btn-text="`hi hih`" /> -->
-    <MyButton :btn-text="buttonText" />
+    <h2>Emit:{{ text }}</h2>
+    <MyButton :btn-text="buttonText" @getText="updateText" />
     <br />
     <div class="product-container">
       <div class="unit" v-for="unit in manifest" :key="unit.item">
@@ -31,7 +32,9 @@ export default {
   },
   data() {
     return {
+      text: "Click to button update text",
       buttonText: "Hello from parent",
+
       manifest: [
         {
           item: "backpack",
@@ -47,6 +50,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    updateText() {
+      this.text = "text updated";
+    },
   },
 };
 </script>
