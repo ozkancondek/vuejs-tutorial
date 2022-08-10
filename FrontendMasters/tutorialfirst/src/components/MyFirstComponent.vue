@@ -2,9 +2,7 @@
 <template>
   <div class="first-component">
     <h1>{{ header }}</h1>
-    <div class="section">
 
-    </div>
     <div class="section">
       <p>
         Vue.js uses HTML-based template syntax to bind the Vue instance to the

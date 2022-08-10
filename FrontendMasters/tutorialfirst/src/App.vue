@@ -27,6 +27,7 @@
     <WatchersVue />
     <ProductsVue />
     <DestinationsRender/>
+    <AnimationTransition/>
   </div>
 </template>
 
@@ -41,7 +42,7 @@ import ComputedExample from "./components/ComputedExample.vue";
 import WatchersVue from "./components/WatchersVue.vue";
 import ProductsVue from "./components/ProductsVue.vue";
 import DestinationsRender from "./components/DestinatiosRender.vue"
-
+import AnimationTransition from "./components/AnimationTransition.vue"
 //import { computed } from "@vue/runtime-core";
 
 export default {
@@ -56,7 +57,8 @@ export default {
     ComputedExample,
     WatchersVue,
     ProductsVue,
-    DestinationsRender
+    DestinationsRender,
+    AnimationTransition
   },
   // setup() {
   //   const message = "Velcome to your Vue.js App";
