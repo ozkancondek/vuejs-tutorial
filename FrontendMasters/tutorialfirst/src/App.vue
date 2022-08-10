@@ -26,6 +26,7 @@
     <ComputedExample />
     <WatchersVue />
     <ProductsVue />
+    <DestinationsRender/>
   </div>
 </template>
 
@@ -39,6 +40,7 @@ import MethodsPropertiesWatchers from "./components/MethodsPropertiesWatchers.vu
 import ComputedExample from "./components/ComputedExample.vue";
 import WatchersVue from "./components/WatchersVue.vue";
 import ProductsVue from "./components/ProductsVue.vue";
+import DestinationsRender from "./components/DestinatiosRender.vue"
 
 //import { computed } from "@vue/runtime-core";
 
@@ -54,6 +56,7 @@ export default {
     ComputedExample,
     WatchersVue,
     ProductsVue,
+    DestinationsRender
   },
   // setup() {
   //   const message = "Velcome to your Vue.js App";

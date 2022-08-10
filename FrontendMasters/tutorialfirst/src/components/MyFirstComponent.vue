@@ -3,6 +3,9 @@
   <div class="first-component">
     <h1>{{ header }}</h1>
     <div class="section">
+
+    </div>
+    <div class="section">
       <p>
         Vue.js uses HTML-based template syntax to bind the Vue instance to the
         DOM, very useful for components.
@@ -15,6 +18,7 @@
         Components:A collection of elements that are encapsulated into a group
         that can be accessed through one single element.
       </p>
+
 
       <h3>Props</h3>
       <p>Passing data down from the parent to the child</p>
