@@ -9,7 +9,7 @@
     </div>
     <button class="submit">Submit</button>
   </div>
-</template>
+</template> ‚
 <script>
 export default {
   props: {
