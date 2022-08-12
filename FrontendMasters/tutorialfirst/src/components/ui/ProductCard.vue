@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <h2>{{ itemName.toUpperCase() }}</h2>
-    <img :src="url" width="235" height="300" />
+    <img :src="url" width="235" height="300"/>
     <div class="quantity">
       <button class="inc" @click="decrement">-</button>
       <span class="quant-text">Quantity: {{ counter }}</span>
@@ -50,9 +50,11 @@ export default {
   margin: 30px;
   border: none;
 }
+
 .item > img {
   align-self: center;
 }
+
 .quantity {
   border: 2px solid black;
   width: 235px;
@@ -61,10 +63,12 @@ export default {
   background: #fff;
   margin-left: 20px;
 }
+
 .inc {
   background: white;
   color: black;
 }
+
 .quantity {
   border: 2px solid black;
   width: 235px;
@@ -73,6 +77,7 @@ export default {
   background: #fff;
   margin-left: 20px;
 }
+
 .submit {
   background: black;
   color: white;
@@ -82,6 +87,7 @@ export default {
   width: 240px;
   transition: 0.25s all ease-in;
 }
+
 button {
   border: none;
   border-radius: 1000px;
