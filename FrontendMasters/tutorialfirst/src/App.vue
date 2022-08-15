@@ -28,6 +28,8 @@
     <ProductsVue />
     <DestinationsRender/>
     <AnimationTransition/>
+    <CompositionAPI/>
+    <VueEx/>
   </div>
 </template>
 
@@ -43,11 +45,15 @@ import WatchersVue from "./components/WatchersVue.vue";
 import ProductsVue from "./components/ProductsVue.vue";
 import DestinationsRender from "./components/DestinatiosRender.vue"
 import AnimationTransition from "./components/AnimationTransition.vue"
+import CompositionAPI from "@/components/CompositionAPI";
+import VueEx from "@/components/VueEx";
 //import { computed } from "@vue/runtime-core";
 
 export default {
   name: "App",
   components: {
+    VueEx,
+    CompositionAPI,
     HelloWorld,
     MyFirstComponent,
     DirectivesModifiersDataRendering,
