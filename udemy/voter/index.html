@@ -26,9 +26,9 @@
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5>{{submissions[0].title}}
-                                    <span class="float-end text-primary" style="cursor:pointer"><i
+                                    <span v-on:click="upvote" class="float-end text-primary" style="cursor:pointer"><i
                                             class="fa fa-chevron-up"></i>
-                                <strong>16</strong>
+                                <strong>{{submissions[0].votes}}</strong>
                                 </span></h5>
                                 <div>Eine nudelgericht mit Hekfleischsoße</div>
                                 <small class="text-muted">Eingerichtet von : Italien</small>

@@ -7,6 +7,17 @@ const app = Vue.createApp({
             submissions : submissions //from seed.js
         }
 
+    },
+    methods : {
+      // increaseVote :function  () {
+      //     submissions[0].votes++
+      //
+      // }
+      //   dont use arrow function
+        upvote (){
+            this.submissions[0].votes++
+
+        }
     }
 
 })
