@@ -4,23 +4,32 @@ const app = Vue.createApp({
     data: function () {
         return {
             submissions: submissions, //from seed.js
-            totalVotes: 0,
+            // totalVotes: 0,
 
         }
 
     },
     computed: {
 
-        //     totalVotes (){
-        //         return  this.submissions.reduce((totalVotes,submission)=>{
-        //             return totalVotes + submission.votes
-        //         },0)
-        //     }
+            totalVotes (){
+                return  this.submissions.reduce((totalVotes,submission)=>{
+                    return totalVotes + submission.votes
+                },0)
+            },
         sortedSubmissions() {
             return this.submissions.sort((a, b) => {
                 return b.votes - a.votes;
 
             })
+        },
+        cardHeaderBackgroundColor(){
+                return {
+                    'bg-primary':this.totalVotes >= 50,
+                    'text-white':this.totalVotes >= 50
+
+                    //alternative
+                    //"bg-primary text-white" : this.totalVotes >= 50
+                }
         }
     },
 
@@ -48,16 +57,16 @@ const app = Vue.createApp({
         //     console.log(newValue)
         //     console.log(oldValue)
         // },
-        submissions: { //this one is long version of function above
-            handler(newValue, oldValue) {
-                this.totalVotes = this.submissions.reduce((totalVotes, submission) => {
-                    return totalVotes + submission.votes
-                }, 0)
-
-            },
-            deep: true, //watching
-            immediate: true // take data when mounted. start with first value when its false
-        },
+        // submissions: { //this one is long version of function above
+        //     handler(newValue, oldValue) {
+        //         this.totalVotes = this.submissions.reduce((totalVotes, submission) => {
+        //             return totalVotes + submission.votes
+        //         }, 0)
+        //
+        //     },
+        //     deep: true, //watching
+        //     immediate: true // take data when mounted. start with first value when its false
+        // },
         totalVotes(newValue, oldValue) {
             console.log(oldValue)
             console.log(newValue)
