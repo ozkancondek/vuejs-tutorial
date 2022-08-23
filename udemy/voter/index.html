@@ -18,25 +18,30 @@
                 <div class="card mt-5">
                     <div class="card-header">
                         <h2 class="card-title">Stimme Jetz ab!
-                        <span class="float-end">{{totalVotes}} Stimmen</span>
+                            <span class="float-end">{{totalVotes}} Stimmen</span>
 
                         </h2>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex">
-                            <div class="d-shrink-0">
-                                <img v-bind:src="submissions[0].img" alt="">
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h5>{{submissions[0].title}}
-                                    <span v-on:click="upvote('Console text !', $event),logConsole('2 Different event is possible')" class="float-end text-primary" style="cursor:pointer"><i
-                                            class="fa fa-chevron-up"></i>
-                                <strong>{{submissions[0].votes}}</strong>
+                        <template v-for="(submission,index) in sortedSubmissions" :key="index">
+                            <div class="d-flex">
+                                <div class="d-shrink-0">
+                                    <img v-bind:src="submission.img" alt="">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5>{{submission.title}}
+                                        <span v-on:click="upvote(submission.id)" class="float-end text-primary"
+                                              style="cursor:pointer"><i
+                                                class="fa fa-chevron-up"></i>
+                                <strong>{{submission.votes}}</strong>
                                 </span></h5>
-                                <div>Eine nudelgericht mit Hekfleischsoße</div>
-                                <small class="text-muted">Eingerichtet von : Italien</small>
+                                    <div>{{submission.desc}}</div>
+                                    <small class="text-muted">Eingerichtet von : {{submission.author}}</small>
+                                </div>
                             </div>
-                        </div>
+                            <hr>
+                        </template>
+
                     </div>
                 </div>
             </div>

@@ -4,19 +4,25 @@ const app = Vue.createApp({
     data: function () {
         return {
             submissions: submissions, //from seed.js
-            totalVotes: 0
+            totalVotes: 0,
+
         }
 
     },
-    // computed : {
-    //
-    //     totalVotes (){
-    //         return  this.submissions.reduce((totalVotes,submission)=>{
-    //             return totalVotes + submission.votes
-    //         },0)
-    //     }
-    //
-    // },
+    computed: {
+
+        //     totalVotes (){
+        //         return  this.submissions.reduce((totalVotes,submission)=>{
+        //             return totalVotes + submission.votes
+        //         },0)
+        //     }
+        sortedSubmissions() {
+            return this.submissions.sort((a, b) => {
+                return b.votes - a.votes;
+
+            })
+        }
+    },
 
     methods: {
         // increaseVote :function  () {
@@ -24,15 +30,16 @@ const app = Vue.createApp({
         //
         // }
         //   dont use arrow function
-        upvote(consoleText, event) {
-            this.submissions[0].votes++
+        upvote(submissionId) {
+            const submission = this.submissions.find(
+                (submission)=>submission.id === submissionId
+            );
+            submission.votes++;
+            //this.submissions[0].votes++
             // console.log(event)
             // console.log(consoleText)
         },
-        logConsole(text) {
-            console.log(text)
 
-        },
 
     },
     watch: {//works for every possible change in data
@@ -51,7 +58,7 @@ const app = Vue.createApp({
             deep: true, //watching
             immediate: true // take data when mounted. start with first value when its false
         },
-        totalVotes(newValue,oldValue) {
+        totalVotes(newValue, oldValue) {
             console.log(oldValue)
             console.log(newValue)
         }
