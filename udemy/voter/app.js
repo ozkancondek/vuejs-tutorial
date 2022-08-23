@@ -30,13 +30,13 @@ const app = Vue.createApp({
             //     //alternative
             //     //"bg-primary text-white" : this.totalVotes >= 50
             // }
-            if(this.totalVotes >= 50){
-                return ["bg-primary","text-white"]
+            if (this.totalVotes >= 50) {
+                return ["bg-primary", "text-white"]
             }
         },
-        cardTitleFontSize(){
+        cardTitleFontSize() {
             return {
-                fontSize : this.totalVotes + 'px'
+                fontSize: this.totalVotes + 'px'
             }
         }
     },
@@ -47,15 +47,15 @@ const app = Vue.createApp({
         //
         // }
         //   dont use arrow function
-        upvote(submissionId) {
-            const submission = this.submissions.find(
-                (submission) => submission.id === submissionId
-            );
-            submission.votes++;
-            //this.submissions[0].votes++
-            // console.log(event)
-            // console.log(consoleText)
-        },
+        // upvote(submissionId) {
+        //     const submission = this.submissions.find(
+        //         (submission) => submission.id === submissionId
+        //     );
+        //     submission.votes++;
+        //     //this.submissions[0].votes++
+        //     // console.log(event)
+        //     // console.log(consoleText)
+        // },
 
 
     },
@@ -84,7 +84,34 @@ const app = Vue.createApp({
     }
 
 })
+//Global Components
 
+app.component("SubmissionListItem", {
+    //Options
+    props:["submission"],
+    methods:{
+        upvote( ) {
+            this.submission.votes++
+        },
+    },
+    template: `
+     <div class="d-flex">
+        <div class="d-shrink-0">
+            <img v-bind:src="submission.img" alt="">
+        </div>
+        <div class="flex-grow-1 ms-3">
+            <h5>{{submission.title}}
+                <span v-on:click="upvote()" class="float-end text-primary"
+                      style="cursor:pointer"><i
+                        class="fa fa-chevron-up"></i>
+        <strong>{{submission.votes}}</strong>
+        </span></h5>
+            <div>{{submission.desc}}</div>
+            <small class="text-muted">Eingerichtet von : {{submission.author}}</small>
+        </div>
+    </div>
+    `
+})
 
 //creation
 const vm = app.mount("#app");
