@@ -7,6 +7,15 @@ const app = Vue.createApp({
         }
 
     },
+    computed : {
+
+        totalVotes (){
+            return  this.submissions.reduce((totalVotes,submission)=>{
+                return totalVotes + submission.votes
+            },0)
+        }
+
+    },
     methods: {
         // increaseVote :function  () {
         //     submissions[0].votes++
@@ -21,7 +30,8 @@ const app = Vue.createApp({
         logConsole (text) {
             console.log(text)
 
-        }
+        },
+
     }
 
 })
