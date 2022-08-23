@@ -11,25 +11,33 @@ const app = Vue.createApp({
     },
     computed: {
 
-            totalVotes (){
-                return  this.submissions.reduce((totalVotes,submission)=>{
-                    return totalVotes + submission.votes
-                },0)
-            },
+        totalVotes() {
+            return this.submissions.reduce((totalVotes, submission) => {
+                return totalVotes + submission.votes
+            }, 0)
+        },
         sortedSubmissions() {
             return this.submissions.sort((a, b) => {
                 return b.votes - a.votes;
 
             })
         },
-        cardHeaderBackgroundColor(){
-                return {
-                    'bg-primary':this.totalVotes >= 50,
-                    'text-white':this.totalVotes >= 50
-
-                    //alternative
-                    //"bg-primary text-white" : this.totalVotes >= 50
-                }
+        cardHeaderBackgroundColor() {
+            // return {
+            //     'bg-primary': this.totalVotes >= 50,
+            //     'text-white': this.totalVotes >= 50
+            //
+            //     //alternative
+            //     //"bg-primary text-white" : this.totalVotes >= 50
+            // }
+            if(this.totalVotes >= 50){
+                return ["bg-primary","text-white"]
+            }
+        },
+        cardTitleFontSize(){
+            return {
+                fontSize : this.totalVotes + 'px'
+            }
         }
     },
 
@@ -41,7 +49,7 @@ const app = Vue.createApp({
         //   dont use arrow function
         upvote(submissionId) {
             const submission = this.submissions.find(
-                (submission)=>submission.id === submissionId
+                (submission) => submission.id === submissionId
             );
             submission.votes++;
             //this.submissions[0].votes++
