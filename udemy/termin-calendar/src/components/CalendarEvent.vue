@@ -3,11 +3,18 @@
     <div class="alert text-center" :class ="alertColor">
       <div>
 <!--        <strong>{{priorityDisplayName}}</strong>-->
-        <slot name = "eventPriority" ></slot>
+        <slot name = "eventPriority"
+        :priorityDisplayName = "priorityDisplayName"
+        >
+          <strong>{{priorityDisplayName}}</strong>-
+        </slot>
       </div>
 
 <!--      <div>{{event.title}}</div>-->
-      <slot></slot>
+      <slot :event="event">
+
+        <div>{{event.title}}</div>
+      </slot>
 
 
       <div>
@@ -22,7 +29,7 @@ export default {
   name:"CalendarEvent",
   props : {
     event : {
-      type : Array
+      type : Object
     }
   },
   computed:{

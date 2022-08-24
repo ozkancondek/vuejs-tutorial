@@ -6,8 +6,11 @@
     <div class="card-body">
 
       <CalendarEvent v-for  = "event in day.events" :key="event.title" :event="event">
-       <template v-slot:eventPriority>eventPriority Slot</template>
-        <template v-slot>Default</template>
+       <!-- template v-slot:eventPriority = "slotProps">-->
+        <template #eventPriority = "slotProps">
+         <h5>{{slotProps.priorityDisplayName}}</h5>
+       </template>
+        <template #default="{event:entry}"><i>{{entry.title}}</i></template>
       </CalendarEvent>
 
     </div>
