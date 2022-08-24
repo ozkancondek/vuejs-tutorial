@@ -12,7 +12,7 @@
       <div class="col-4 offset-4">
         <!-- Anfang: Template für die Calendar-Entry-Component -->
 
-          <CalendarEntry/>
+        <CalendarEntry/>
 
         <!-- Ende: Template für die Calendar-Day-Component -->
       </div>
@@ -24,7 +24,14 @@
           </button>
         </div>
         <!-- Anfang: Template für die Calendar-Settings-Component -->
-        <CalendarSettings v-if="displaySettings"/>
+<!--        <transition name="fade" >
+          <CalendarSettings v-if="displaySettings"/>
+        </transition>-->
+        <transition enter-active-class="animate__animated animate__bounceInRight"
+                    leave-active-class="animate__animated animate__bounceOutRight" >
+          <CalendarSettings v-if="displaySettings"/>
+        </transition>
+
         <!-- Ende: Template für die Calendar-Day-Component -->
       </div>
     </div>
@@ -35,10 +42,11 @@
 import CalendarWeek from "./components/CalendarWeek"
 import CalendarEntry from "@/components/CalendarEntry";
 import CalendarSettings from "@/components/CalendarSettings";
+
 export default {
 
   name: "App",
-  components:{
+  components: {
     CalendarSettings,
     CalendarEntry,
     //Long writing version
@@ -46,18 +54,18 @@ export default {
     CalendarWeek,
 
   },
-  data(){
-  return{
-    displaySettings:false
-  }
+  data() {
+    return {
+      displaySettings: false
+    }
   },
-  methods : {
-    toggleDisplaySettings(){
+  methods: {
+    toggleDisplaySettings() {
       this.displaySettings = !this.displaySettings
     }
   },
-  computed:{
-    buttonSettingsClasses(){
+  computed: {
+    buttonSettingsClasses() {
       return this.displaySettings ? "btn-success" : "btn-outline-success"
 
     }
@@ -68,9 +76,29 @@ export default {
 <style>
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "~animate.css/animate.min.css";
 
 .square {
   width: 40px;
   height: 40px;
 }
+
+/*Transition : fade*/
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.25s ease-out
+}
+
+
 </style>
