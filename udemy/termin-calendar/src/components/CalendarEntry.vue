@@ -15,7 +15,9 @@
             class="form-control"
             placeholder="Neuer Eintrag"
             v-model="event.title"
-            @keyup.enter = "submitEvent()"
+            @keyup.enter.exact = "submitEvent()"
+            @keyup.ctrl.enter = "resetEventTitle()"
+            ref="eventTitleInput"
         />
         <select class="form-select mt-2" v-model="event.priority">
           <option value="-1">Hoch</option>
@@ -36,7 +38,7 @@
         <hr/>
         <div class="d-grid gap-2">
           <button class="btn btn-primary" @click="submitEvent()" :disabled="submitEventButtonStatus">Eintragen</button>
-          <button class="btn btn-danger">Inhalt löschen</button>
+          <button class="btn btn-danger" @click="resetEventTitle()">Inhalt löschen</button>
         </div>
       </div>
     </div>
@@ -60,6 +62,9 @@ export default {
 
   },
   props: {},
+  mounted(){
+    this.$refs.eventTitleInput.focus();
+  },
   methods: {
     eventColorClasses(eventColor) {
       return ['alert-' + eventColor,
@@ -79,6 +84,10 @@ export default {
         priority: 0
       }
       this.error = false
+    },
+    resetEventTitle(){
+      this.event.title =""
+
     }
   },
   computed: {
