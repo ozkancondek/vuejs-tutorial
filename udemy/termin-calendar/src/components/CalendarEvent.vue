@@ -24,7 +24,10 @@
        </div>
      </template>
       <template v-else>
-        test
+         <input  type="text" class="form-control" :placeholder="event.title" @input="setNewEventTitle($event)"/>
+        <div>{{newEventTitle}}</div>
+        <hr>
+        <i class="fas fa-check" @click="updateEvent" role="button"></i>
       </template>
     </div>
   </div>
@@ -41,12 +44,29 @@ export default {
       type:Object
     }
   },
+  data(){
+    return {
+      newEventTitle:""
+
+    }
+  },
   methods : {
     deleteEvent(){
       Store.mutations.deleteEvent(this.day.id,this.event.title)
     },
     editEvent(){
       Store.mutations.editEvent(this.day.id,this.event.title)
+    },
+    setNewEventTitle(event){
+      this.newEventTitle = event.target.value //how shoul i know target
+
+    },
+    updateEvent(){
+      Store.mutations.updateEvent(
+          this.day.id,
+          this.event.title,
+          this.newEventTitle
+      )
     }
   },
   computed:{
