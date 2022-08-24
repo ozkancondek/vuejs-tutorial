@@ -1,4 +1,4 @@
-const submissions = [
+export const calendarWeekData = [
     {
         id: 1 ,
         title: 'Spaghetti Bolognese',
