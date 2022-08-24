@@ -5,7 +5,9 @@ const state = reactive({
     calendarWeekData,
 })
 
-const getters = {}
+const getters = {
+    activeDay : ()=> state.calendarWeekData.find(day=>day.active)
+}
 
 const mutations = {}
 
@@ -14,3 +16,14 @@ export default {
     getters,
     mutations
 }
+//Sample day
+// {
+//     id: 1,
+//         shortName: "Mo",
+//     fullName: "Montag",
+//     events: [
+//     { title: "Vue.js lernen", edit: false, color: "success", priority: 0 },
+//     { title: "Üben, üben, üben", edit: false, color: "info", priority: -1 },
+// ],
+//     active: false,
+// },
