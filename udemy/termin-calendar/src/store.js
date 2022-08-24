@@ -24,11 +24,12 @@ const mutations = {
         dayObj.events.splice(eventIndex,1)
 
     },
-    updateEvent(dayId,oldEventTitle,newEventTitle){
-        newEventTitle=newEventTitle !== "" ? newEventTitle : oldEventTitle
+    updateEvent(dayId,oldEventTitle,  newEvent){
+        newEvent.title=newEvent.title !== "" ? newEvent.title : oldEventTitle
         const dayObj = state.calendarWeekData.find((day)=>day.id === dayId)
         const eventObj = dayObj.events.find((event)=> event.title === oldEventTitle)
-        eventObj.title =newEventTitle;
+        eventObj.title =newEvent.title;
+        eventObj.priority = Number(newEvent.priority);
         eventObj.edit=false
 
     }
