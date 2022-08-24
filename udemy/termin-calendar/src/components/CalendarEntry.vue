@@ -5,12 +5,14 @@
       <h5>Neuer Termin für: <strong>{{activeDayName}}</strong></h5>
     </div>
     <div class="card-body">
+<!--      {{event}}-->
       <input
           type="text"
           class="form-control"
           placeholder="Neuer Eintrag"
+          v-model="event.title"
       />
-      <select class="form-select mt-2">
+      <select class="form-select mt-2" v-model = "event.priority">
         <option value="-1">Hoch</option>
         <option value="0">Mittel</option>
         <option value="1">Tief</option>
@@ -28,7 +30,7 @@
       </div>
       <hr />
       <div class="d-grid gap-2">
-        <button class="btn btn-primary">Eintragen</button>
+        <button class="btn btn-primary" @click = "submitEvent()">Eintragen</button>
         <button class="btn btn-danger">Inhalt löschen</button>
       </div>
     </div>
@@ -60,6 +62,9 @@ export default {
     setEventColor(eventColor){
       this.event.color = eventColor;
 
+    },
+    submitEvent(){
+      Store.mutations.storeEvent(this.event)
     }
   },
   computed:{
