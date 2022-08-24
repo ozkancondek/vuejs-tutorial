@@ -1,26 +1,31 @@
 <template>
   <div id="calendar-event">
     <div class="alert text-center" :class ="alertColor">
-      <div>
-<!--        <strong>{{priorityDisplayName}}</strong>-->
-        <slot name = "eventPriority"
-        :priorityDisplayName = "priorityDisplayName"
-        >
-          <strong>{{priorityDisplayName}}</strong>-
-        </slot>
-      </div>
+     <template v-if="!event.edit  ">
+       <div>
+         <!--        <strong>{{priorityDisplayName}}</strong>-->
+         <slot name = "eventPriority"
+               :priorityDisplayName = "priorityDisplayName"
+         >
+           <strong>{{priorityDisplayName}}</strong>-
+         </slot>
+       </div>
 
-<!--      <div>{{event.title}}</div>-->
-      <slot :event="event">
+       <!--      <div>{{event.title}}</div>-->
+       <slot :event="event">
 
-        <div>{{event.title}}</div>
-      </slot>
+         <div>{{event.title}}</div>
+       </slot>
 
 
-      <div>
-        <i class="fas fa-edit me-2" role="button" ></i>
-        <i class="far fa-trash-alt" role="button" @click="deleteEvent"></i>
-      </div>
+       <div>
+         <i class="fas fa-edit me-2" role="button" @click = "editEvent"></i>
+         <i class="far fa-trash-alt" role="button" @click="deleteEvent"></i>
+       </div>
+     </template>
+      <template v-else>
+        test
+      </template>
     </div>
   </div>
 </template>
@@ -39,6 +44,9 @@ export default {
   methods : {
     deleteEvent(){
       Store.mutations.deleteEvent(this.day.id,this.event.title)
+    },
+    editEvent(){
+      Store.mutations.editEvent(this.day.id,this.event.title)
     }
   },
   computed:{
