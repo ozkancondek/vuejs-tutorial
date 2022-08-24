@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
 
-      <CalendarEvent/>
+      <CalendarEvent v-for  = " event in day.events" :key="event.title" :event="event"/>
 
     </div>
   </div>
