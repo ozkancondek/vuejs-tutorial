@@ -1,8 +1,8 @@
-<templa>
+<template>
 <div id="calender-entry">
   <div class="card">
     <div class="card-header text-center">
-      <h5>Neuer Termin für: <strong>Montag</strong></h5>
+      <h5>Neuer Termin für: <strong>{{activeDayName}}</strong></h5>
     </div>
     <div class="card-body">
       <input
@@ -32,10 +32,17 @@
     </div>
   </div>
 </div>
-</templa>
+</template>
 <script>
+import Store from "../store"
 export default {
-  name : "CalendarEntry"
+  name : "CalendarEntry",
+  props:{},
+  methods:{},
+  computed:{
+    activeDayName() {
+      return Store.getters.activeDay().fullName    }
+  }
 }
 </script>
 <style scoped></style>

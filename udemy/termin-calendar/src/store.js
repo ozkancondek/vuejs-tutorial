@@ -32,6 +32,12 @@ const mutations = {
         eventObj.priority = Number(newEvent.priority);
         eventObj.edit=false
 
+    },
+    setActiveDay(dayId){
+         state.calendarWeekData.map((dayObj)=>{
+             dayObj.id === dayId ? (dayObj.active = true) : (dayObj.active=false)
+         })
+
     }
 }
 

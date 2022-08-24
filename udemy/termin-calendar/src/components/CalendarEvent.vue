@@ -1,6 +1,6 @@
 <template>
   <div id="calendar-event">
-    <div class="alert text-center" :class ="alertColor">
+    <div class="alert text-center" :class ="alertColor" >
      <template v-if="!event.edit  ">
        <div>
          <!--        <strong>{{priorityDisplayName}}</strong>-->

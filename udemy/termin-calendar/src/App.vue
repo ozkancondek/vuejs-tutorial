@@ -11,7 +11,9 @@
     <div class="row mt-3">
       <div class="col-4 offset-4">
         <!-- Anfang: Template für die Calendar-Entry-Component -->
-        <CalendarEntry/>
+
+          <CalendarEntry/>
+
         <!-- Ende: Template für die Calendar-Day-Component -->
       </div>
       <div class="col-2 offset-2">
