@@ -5,7 +5,10 @@
     </div>
     <div class="card-body">
 
-      <CalendarEvent v-for  = " event in day.events" :key="event.title" :event="event"/>
+      <CalendarEvent v-for  = "event in day.events" :key="event.title" :event="event">
+       <template v-slot:eventPriority>eventPriority Slot</template>
+        <template v-slot>Default</template>
+      </CalendarEvent>
 
     </div>
   </div>
