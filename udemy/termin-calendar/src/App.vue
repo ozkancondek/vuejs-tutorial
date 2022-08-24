@@ -19,12 +19,12 @@
       <div class="col-2 offset-2">
         <div class="float-end">
           <!-- Mit dem Button blenden wir die Calendar-Settings-Component ein bzw. aus. -->
-          <button class="btn btn-lg mb-2">
+          <button :class="buttonSettingsClasses" class="btn btn-lg mb-2" @click="toggleDisplaySettings">
             <i class="fas fa-cogs"></i>
           </button>
         </div>
         <!-- Anfang: Template für die Calendar-Settings-Component -->
-        <CalendarSettings/>
+        <CalendarSettings v-if="displaySettings"/>
         <!-- Ende: Template für die Calendar-Day-Component -->
       </div>
     </div>
@@ -45,6 +45,22 @@ export default {
     //'CalendarWeek':CalendarWeek
     CalendarWeek,
 
+  },
+  data(){
+  return{
+    displaySettings:false
+  }
+  },
+  methods : {
+    toggleDisplaySettings(){
+      this.displaySettings = !this.displaySettings
+    }
+  },
+  computed:{
+    buttonSettingsClasses(){
+      return this.displaySettings ? "btn-success" : "btn-outline-success"
+
+    }
   }
 };
 </script>
