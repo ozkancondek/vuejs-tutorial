@@ -1,34 +1,63 @@
 export const calendarWeekData = [
     {
-        id: 1 ,
-        title: 'Spaghetti Bolognese',
-        desc: 'Ein Nudelgericht mit Hackfleischsoße.',
-        votes: 16,
-        author: 'Italien',
-        img: 'https://via.placeholder.com/64'
+        id: 1,
+        shortName: "Mo",
+        fullName: "Montag",
+        events: [
+            { title: "Vue.js lernen", edit: false, color: "success", priority: 0 },
+            { title: "Üben, üben, üben", edit: false, color: "info", priority: -1 },
+        ],
+        active: false,
     },
     {
-        id: 2 ,
-        title: 'Wiener Schnitzel',
-        desc: 'Ein dünnes Schnitzel aus Kalbfleisch.',
-        votes: 5,
-        author: 'Österreich',
-        img: 'https://via.placeholder.com/64'
+        id: 2,
+        shortName: "Di",
+        fullName: "Dienstag",
+        events: [],
+        active: false,
     },
     {
-        id: 3 ,
-        title: 'Peking-Ente',
-        desc: 'Das kaiserliche Gericht.',
-        votes: 20,
-        author: 'China',
-        img: 'https://via.placeholder.com/64'
+        id: 3,
+        shortName: "Mi",
+        fullName: "Mittwoch",
+        events: [],
+        active: false,
     },
     {
         id: 4,
-        title: 'Gulasch',
-        desc: 'Ein traditionelles Ragout.',
-        votes: 24,
-        author: 'Ungarn',
-        img: 'https://via.placeholder.com/64'
-    }
-]
+        shortName: "Do",
+        fullName: "Donnerstag",
+        events: [
+            {
+                title: "Grillen mit Freunden",
+                edit: false,
+                color: "warning",
+                priority: 0,
+            },
+        ],
+        active: true,
+    },
+    {
+        id: 5,
+        shortName: "Fr",
+        fullName: "Freitag",
+        events: [],
+        active: false,
+    },
+    {
+        id: 6,
+        shortName: "Sa",
+        fullName: "Samstag",
+        events: [],
+        active: false,
+    },
+    {
+        id: 7,
+        shortName: "So",
+        fullName: "Sonntag",
+        events: [
+            { title: "Müll rausbringen", edit: false, color: "primary", priority: 1 },
+        ],
+        active: false,
+    },
+];
