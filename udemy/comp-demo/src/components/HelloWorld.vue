@@ -23,7 +23,7 @@
 //For primitive data types ref()
 //for others reactive()
 //rerender values after click => toref()
-import {ref, reactive,toRefs,computed} from "vue"
+import {ref, reactive,toRefs,computed,onMounted} from "vue"
 
 export default {
   name: 'HelloWorld',
@@ -52,7 +52,8 @@ export default {
       greetingObj.message = "Hallo"
       greetingObj.desc = "Description updated"
 
-    }
+    };
+    onMounted(()=>console.log("Component mounted"))
 
     return {
       getGreeting,
