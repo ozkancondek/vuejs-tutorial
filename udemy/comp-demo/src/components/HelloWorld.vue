@@ -8,6 +8,9 @@
     <h1>{{ greetingObj.message }}-{{ greetingObj.desc }}</h1>
     <br>
     <button @click="updateGreetingObj">Update unprimitive</button>
+    <br>
+    <p>Update with toRef() method</p>
+    <h1>{{message}} - {{desc}}</h1>
 
 
   </div>
@@ -16,7 +19,8 @@
 <script>
 //For primitive data types ref()
 //for others reactive()
-import {ref, reactive} from "vue"
+//rerender values after click => toref()
+import {ref, reactive,toRefs } from "vue"
 
 export default {
   name: 'HelloWorld',
@@ -28,6 +32,9 @@ export default {
     const updateGreeting = () => {
       return getGreeting.value = "Tex updated"
     }
+    //if I don't use that method those wil not be updated
+    const greetingObjRefs = toRefs(greetingObj);
+    const {message,desc} = greetingObjRefs;
     const greetingObj =reactive( {
       message: "Salut",
       desc: "Wilkommen zur App"
@@ -43,7 +50,9 @@ export default {
       getGreeting,
       updateGreeting,
       greetingObj,
-      updateGreetingObj
+      updateGreetingObj,
+      message,
+      desc,
     }
   }
 
