@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import axios from "axios";
-
+//import useNotification from "./hooks/useNotification"
+//const {setNotification} = useNotification()
 const state = {
   listings: [],
   loading: false,
@@ -29,6 +30,7 @@ const actions = {
   removeListing({ commit }, listing) {
     return axios.post("/api/listings/delete", listing).then((response) => {
       commit("UPDATE_LISTINGS", response.data);
+      //setNotification("Element wurde entfert")
     });
   },
   resetListings({ commit }) {

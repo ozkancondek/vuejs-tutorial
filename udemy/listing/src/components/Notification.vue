@@ -1,16 +1,24 @@
 <template>
   <div
-    v-if="notification"
-    class="alert"
-    :class="{ 'alert-light': isDark, 'alert-dark': !isDark }"
+    v-if="notification.active"
+    class="alert alert-dismissible"
+    :class="{ 'alert-light': darkMode, 'alert-dark': !darkMode }"
   >
-    {{ notification }}
+    {{ notification.message }}
+    <butt type = "button" class="btn-close" data-bs-dismiss = "alert" @click="toggleNotification"></butt>
   </div>
 </template>
 
 <script>
+import useDarkMode from "@/hooks/useDarkModes"
 export default {
   name: "Notification",
-  props: ["notification", "isDark"],
+  props: ["notification","toggleNotification"],
+  setup(){
+    const darkMode = useDarkMode()
+    return{
+      darkMode
+    }
+  }
 };
 </script>
