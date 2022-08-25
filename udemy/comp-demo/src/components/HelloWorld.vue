@@ -11,6 +11,9 @@
     <br>
     <p>Update with toRef() method</p>
     <h1>{{message}} - {{desc}}</h1>
+    <br>
+    <hr>
+    <h1>{{greetingReverse}}</h1>
 
 
   </div>
@@ -20,7 +23,7 @@
 //For primitive data types ref()
 //for others reactive()
 //rerender values after click => toref()
-import {ref, reactive,toRefs } from "vue"
+import {ref, reactive,toRefs,computed} from "vue"
 
 export default {
   name: 'HelloWorld',
@@ -32,13 +35,18 @@ export default {
     const updateGreeting = () => {
       return getGreeting.value = "Tex updated"
     }
+    const greetingReverse = computed(()=>{
+      return getGreeting.value.split("").reverse().join("")
+    })
     //if I don't use that method those wil not be updated
-    const greetingObjRefs = toRefs(greetingObj);
-    const {message,desc} = greetingObjRefs;
+
     const greetingObj =reactive( {
       message: "Salut",
       desc: "Wilkommen zur App"
     })
+    const greetingObjRefs = toRefs(greetingObj);
+    const {message,desc} = greetingObjRefs;
+
     const updateGreetingObj = () => {
 
       greetingObj.message = "Hallo"
@@ -49,6 +57,7 @@ export default {
     return {
       getGreeting,
       updateGreeting,
+      greetingReverse,
       greetingObj,
       updateGreetingObj,
       message,
