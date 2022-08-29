@@ -1,0 +1,1 @@
+export const myArr = [0,1,2]
