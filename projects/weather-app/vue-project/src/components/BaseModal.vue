@@ -10,6 +10,7 @@
             v-if="modalActive"
             class="p-4 bg-white self-start mt-32 max-w-screen-md"
           >
+            <!--   So i can write smt between BaseModal tags -->
             <slot />
             <button
               class="text-white mt-8 bg-weather-primary py-2 px-6"

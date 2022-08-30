@@ -19,7 +19,8 @@
           class="fa-solid fa-plus text-xl hover:text-weather-secondary duration-150 cursor-pointer"
         ></i>
       </div>
-
+      <!--  Send toggleModal to child component and also modalActive state -->
+      <!-- Child component will trigger the function with emit -->
       <BaseModal :modalActive="modalActive" @close-modal="toggleModal">
         <div class="text-black">
           <h1 class="text-2xl mb-1">About:</h1>
