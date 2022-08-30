@@ -1,7 +1,6 @@
 <template>
   <main class="container text-white">
     <div class="pt-4 mb-8 relative">
-      <!--    run getSearchResults in every chenge in input -->
       <input
         type="text"
         v-model="searchQuery"
@@ -20,11 +19,24 @@
           No results match your query, try a different term.
         </p>
         <template v-else>
-          <li class="py-2 cursor-pointer">
-            {{ mapboxSearchResults.name }}
+          <li
+            v-for="searchResult in mapboxSearchResults"
+            :key="searchResult.id"
+            class="py-2 cursor-pointer"
+            @click="previewCity(searchResult)"
+          >
+            {{ searchResult.place_name }}
           </li>
         </template>
       </ul>
+    </div>
+    <div class="flex flex-col gap-4">
+      <Suspense>
+        <CityList />
+        <template #fallback>
+          <CityCardSkeleton />
+        </template>
+      </Suspense>
     </div>
   </main>
 </template>
@@ -32,21 +44,37 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
-const apiKey = "6fbcd6af19f13c2f9ece03a4b2a09618";
+import { useRouter } from "vue-router";
+/* import CityCardSkeleton from "../components/CityCardSkeleton.vue";
+import CityList from "../components/CityList.vue"; */
+const router = useRouter();
+const previewCity = (searchResult) => {
+  const [city, state] = searchResult.place_name.split(",");
+  router.push({
+    name: "cityView",
+    params: { state: state.replaceAll(" ", ""), city: city },
+    query: {
+      lat: searchResult.geometry.coordinates[1],
+      lng: searchResult.geometry.coordinates[0],
+      preview: true,
+    },
+  });
+};
+const mapboxAPIKey =
+  "pk.eyJ1Ijoiam9obmtvbWFybmlja2kiLCJhIjoiY2t5NjFzODZvMHJkaDJ1bWx6OGVieGxreSJ9.IpojdT3U3NENknF6_WhR2Q";
 const searchQuery = ref("");
 const queryTimeout = ref(null);
-const searchError = ref(null);
 const mapboxSearchResults = ref(null);
+const searchError = ref(null);
 const getSearchResults = () => {
   clearTimeout(queryTimeout.value);
   queryTimeout.value = setTimeout(async () => {
     if (searchQuery.value !== "") {
       try {
         const result = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${searchQuery.value}&appid=${apiKey}`
+          `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIKey}&types=place`
         );
-
-        mapboxSearchResults.value = result.data;
+        mapboxSearchResults.value = result.data.features;
       } catch {
         searchError.value = true;
       }
@@ -56,3 +84,5 @@ const getSearchResults = () => {
   }, 300);
 };
 </script>
+
+<style lang="scss" scoped></style>
