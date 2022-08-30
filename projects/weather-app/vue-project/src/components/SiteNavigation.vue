@@ -17,10 +17,11 @@
         ></i>
         <i
           class="fa-solid fa-plus text-xl hover:text-weather-secondary duration-150 cursor-pointer"
+          @click="addCity"
+          v-if="route.query"
         ></i>
       </div>
-      <!--  Send toggleModal to child component and also modalActive state -->
-      <!-- Child component will trigger the function with emit -->
+
       <BaseModal :modalActive="modalActive" @close-modal="toggleModal">
         <div class="text-black">
           <h1 class="text-2xl mb-1">About:</h1>
@@ -56,13 +57,44 @@
 </template>
 
 <script setup>
-import { RouterLink } from "vue-router";
-import BaseModal from "./BaseModal.vue";
+import { RouterLink, useRoute, useRouter } from "vue-router";
+import { uid } from "uid";
 import { ref } from "vue";
+import BaseModal from "./BaseModal.vue";
+const savedCities = ref([]);
+const route = useRoute();
+const router = useRouter();
+const addCity = () => {
+  if (localStorage.getItem("savedCities")) {
+    savedCities.value = JSON.parse(localStorage.getItem("savedCities"));
+  }
+  //check if the city aldready in list
+  let isInList = savedCities.value.find(
+    (city) => city.state === route.params.state
+  );
+  console.log(savedCities.value.length);
+
+  const locationObj = {
+    id: uid(),
+    state: route.params.state,
+    city: route.params.city,
+    coords: {
+      lat: route.query.lat,
+      lng: route.query.lng,
+    },
+  };
+  if (isInList === undefined) {
+    savedCities.value.push(locationObj);
+  }
+
+  localStorage.setItem("savedCities", JSON.stringify(savedCities.value));
+  let query = Object.assign({}, route.query);
+  delete query.preview;
+  query.id = locationObj.id;
+  router.replace({ query });
+};
 const modalActive = ref(null);
 const toggleModal = () => {
   modalActive.value = !modalActive.value;
 };
 </script>
-
-<style lang="scss" scoped></style>

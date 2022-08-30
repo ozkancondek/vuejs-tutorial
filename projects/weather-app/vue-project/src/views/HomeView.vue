@@ -45,8 +45,8 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
-/* import CityCardSkeleton from "../components/CityCardSkeleton.vue";
-import CityList from "../components/CityList.vue"; */
+import CityCardSkeleton from "../components/CityCardSkeleton.vue";
+import CityList from "../components/CityList.vue";
 const router = useRouter();
 const previewCity = (searchResult) => {
   const [city, state] = searchResult.place_name.split(",");
