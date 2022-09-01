@@ -1,7 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <MyComponentFirst header = "My First Component"/>
+  <HelloWorld  />
+  <MyComponentFirst header = "Data Fetch"/>
 </template>
 
 <script>

@@ -1,62 +1,31 @@
-<template>
-  <div class="container">
-    <h1>Subject=>{{header}}</h1>
-    <p>{{myText}}</p>
-    <p>{{uppercaseText}}</p>
-    <input v-model = "myText" type="text"  >
-    <button @click="deleteText">Delete</button>
-    <br>
-    <p>{{changes}} changes occured</p>
-    <p v-if="changes >= 10">You Made more than 10 changing</p>
-  </div>
-</template>
+<script setup>
+import useFetchUsers from './useFetchUsers';
 
-<script>
-export default {
-  name : "MyComponentFirst",
-  props : {
-    header : String
+const { isLoading, error, data: users } = useFetchUsers();
 
-  },
-  data (){
-    return {
-      myText : "Here is my text comes from inner data",
-      changes:0
-    }
-  },
-  computed : {
-    uppercaseText(){
-     return  this.myText.toUpperCase()
-    }
-  },
-  methods : {
-    deleteText (){
-       this.myText = ""
-    }
-  },
-
-  watch : {
-    myText (){
-      this.changes ++
-    }
-  }
-
-
-
-
-}
-
+console.log(isLoading)
 </script>
-<style scope>
-.container{
-  border: 2px solid aqua;
-  padding: 10px;
-  width: 100%;
-}
-input{
-  width: 300px;
-  height: 40px;
-  font-size: 1rem;
-}
 
-</style>
+<template>
+  <p v-if="isLoading">
+    Fetching users...
+  </p>
+  <p v-else-if="error">
+    An error ocurred while fetching users
+  </p>
+  <ul v-else-if="users">
+    <li
+        v-for="user in users"
+        :key="user.login.uuid"
+    >
+      <img
+          :src="user.picture.thumbnail"
+          alt="user"
+      >
+      <p>
+        {{ user.name.first }}
+        {{ user.name.last }}
+      </p>
+    </li>
+  </ul>
+</template>
