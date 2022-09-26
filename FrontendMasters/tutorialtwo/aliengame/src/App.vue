@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <GamestateStart v-if="uiState === 'start'">
-      <h2>Hi there!!!</h2>
+      <h2>Hi there!!! Choose your character to continue!</h2>
       <p
         v-for="option in characterChoices"
         :key="option"
         class="character-choices"
       >
         <input
-          v-model="characterinput"
+          v-model="characterInput"
           :id="option"
           :value="option"
           type="radio"
@@ -16,7 +16,7 @@
         <label :for="option">{{ option }}</label>
         <br />
       </p>
-      <button>Pick your character</button>
+      <button @click="pickCharacter">Select</button>
     </GamestateStart>
 
     <section v-else>
@@ -41,6 +41,9 @@
             />
           </clipPath>
         </defs>
+        <Friend />
+
+        <component :is="character"></component>
 
         <text
           x="1000"
@@ -85,17 +88,40 @@
 
 <script>
 import { mapState } from "vuex";
+
+import Baker from "./components/Baker.vue";
+import Friend from "./components/Friend.vue";
+import Artist from "./components/Artist.vue";
+import Zombie from "./components/Zombie.vue";
+import Mechanic from "./components/Mechanic.vue";
 import GamestateStart from "./components/GamestateStart.vue";
+import store from "./store";
 
 export default {
   computed: {
     ...mapState(["uiState", "questions", "character", "characterChoices"]),
   },
-  components: { GamestateStart },
+  components: {
+    GamestateStart,
+    Friend,
+
+    Baker,
+    Artist,
+    Zombie,
+    Mechanic,
+  },
   data() {
     return {
       characterInput: "",
     };
+  },
+  methods: {
+    pickCharacter() {
+      //send store the choosen character
+      this.$store.commit("pickCharacter", this.characterInput);
+      //update ui state. it was start before and with button click it will change
+      this.$store.commit("updateUIState", "characterChoosen");
+    },
   },
 };
 </script>
