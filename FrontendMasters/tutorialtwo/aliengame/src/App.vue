@@ -19,7 +19,7 @@
       <button @click="pickCharacter">Select</button>
     </GamestateStart>
 
-    <section v-else>
+    <section v-else-if="uiState === 'characterChoosen'">
       <svg viewBox="0 -180 1628 1180" class="main">
         <defs>
           <clipPath id="bottom-clip">
@@ -42,7 +42,7 @@
           </clipPath>
         </defs>
         <Friend />
-
+        <Score />
         <component :is="character"></component>
 
         <text
@@ -82,33 +82,55 @@
           />
         </g>
       </svg>
+      <div class="friendtalk">
+        <h3>{{ questions[questionIndex].question }}</h3>
+      </div>
+
+      <div class="zombietalk">
+        <p v-for="character in shuffle(characterChoices)" :key="character">
+          <button @click="pickQuestion(character)">
+            {{ questions[questionIndex][character] }}
+          </button>
+        </p>
+      </div>
     </section>
+    <GamestateFinish v-else />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-
+import gsap from "gsap";
 import Baker from "./components/Baker.vue";
+import Score from "./components/Score.vue";
 import Friend from "./components/Friend.vue";
 import Artist from "./components/Artist.vue";
 import Zombie from "./components/Zombie.vue";
 import Mechanic from "./components/Mechanic.vue";
 import GamestateStart from "./components/GamestateStart.vue";
 import store from "./store";
+import GamestateFinish from "./components/GamestateFinish.vue";
 
 export default {
   computed: {
-    ...mapState(["uiState", "questions", "character", "characterChoices"]),
+    ...mapState([
+      "uiState",
+      "characterChoices",
+      "character",
+      "questions",
+      "questionIndex",
+      "score",
+    ]),
   },
   components: {
-    GamestateStart,
-    Friend,
-
+    Score,
     Baker,
+    Friend,
     Artist,
     Zombie,
     Mechanic,
+    GamestateStart,
+    GamestateFinish,
   },
   data() {
     return {
@@ -118,9 +140,27 @@ export default {
   methods: {
     pickCharacter() {
       //send store the choosen character
-      this.$store.commit("pickCharacter", this.characterInput);
+      this.$store.commit("updateCharacter", this.characterInput);
       //update ui state. it was start before and with button click it will change
       this.$store.commit("updateUIState", "characterChoosen");
+    },
+    pickQuestion(character) {
+      this.$store.commit("pickQuestion", character);
+    },
+    shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    },
+  },
+  watch: {
+    score(newValue, oldValue) {
+      console.log(oldValue);
+      gsap.to(".bottom-clip-path, .top-clip-path", {
+        y: -newValue * 6,
+      });
     },
   },
 };
@@ -179,7 +219,7 @@ svg.main,
   position: absolute;
   z-index: 1000;
   top: 300px;
-  left: 265px;
+  left: 465px;
   width: 200px;
 }
 button {
@@ -205,7 +245,7 @@ text {
   position: absolute;
   z-index: 1000;
   top: 445px;
-  left: 665px;
+  left: 865px;
   width: 200px;
   height: 200px;
   display: flex;
